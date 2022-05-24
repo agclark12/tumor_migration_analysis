@@ -245,12 +245,12 @@ def extract_vectors(stk_path,time_int=1,px_size=1,mask=None,window_length=10,noi
     #opens the image stack
     stk = tifffile.imread(stk_path)
 
-    # checks that the input stack and mask have correct dimensions
+    # checks that the input stack and mask have same dimensions
     # and creates the mask if necessary
     if len(stk.shape) != 3:
         raise ValueError('Input stack must be 3D (2D images over time)')
     if isinstance(mask, np.ndarray):
-        if stk.shape[:2] != mask.shape:
+        if stk.shape[1:] != mask.shape:
             raise ValueError('Mask must have same dimensions as stack images')
         mask = (mask > 0).astype('uint8')
     elif mask is None:
@@ -305,21 +305,21 @@ def main():
     # px_size = 0.91 #um/px
     # window_len = 20 #interrogation window length in um
 
-    stk_path = './sample_data_lab_meeting/monolayer_live.tif'
-    time_int = 20 #min
-    px_size = 0.275 #um/px
+    stk_path = './sample_data/tumor_nuclei_small/tumor_nuclei_small.tif'
+    time_int = 30 #min
+    px_size = 0.91 #um/px
     window_len = 10 #interrogation window length in um
+
+    #if you want to use a manually-generated mask, use the following:
+    mask_path = './sample_data/tumor_nuclei_small/tumor_nuclei_small_mask.tif'
+    mask = tifffile.imread(mask_path)
+    extract_vectors(stk_path,time_int=time_int,px_size=px_size,window_length=window_len,mask=mask)
 
     #for automatic generation of masks during analysis, use the following:
     # extract_vectors(stk_path,time_int=time_int,px_size=px_size,window_length=window_len,mask='auto')
 
-    #if you want to use a manually-generated mask, use the following:
-    # mask_path = './sample_data/tumor_nuclei_mask.tif'
-    # mask = tifffile.imread(stk_path)
-    # extract_vectors(stk_path,time_int=time_int,px_size=px_size,window_length=window_len,mask=mask)
-
     #if you do not want to use a mask, use the following:
-    extract_vectors(stk_path,time_int=time_int,px_size=px_size,window_length=window_len)
+    # extract_vectors(stk_path,time_int=time_int,px_size=px_size,window_length=window_len)
 
 
 if __name__=="__main__":

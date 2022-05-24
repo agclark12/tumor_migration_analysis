@@ -122,8 +122,8 @@ def extract_dir_corr(traj_list):
 
     #make list of all possible trajectory combinations
     iter_list = itertools.combinations(range(len(traj_list)), 2)
-    # comb_list = list(itertools.islice(iter_list,0,None,1000)) # do this if you want to get a sample
-    comb_list = list(itertools.islice(iter_list))
+    # comb_list = list(itertools.islice(iter_list,0,None,1000)) # do this if you want to get only a sample
+    comb_list = list(itertools.islice(iter_list, None))
 
     #make arrays to keep track of the starting distance and mean correlation
     mean_dist_list = []

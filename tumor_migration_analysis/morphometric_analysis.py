@@ -321,7 +321,6 @@ def polygon_from_mask(mask):
     se = get_circular_se(radius=1)
     outer_mask = (ndi.binary_fill_holes(mask)).astype('uint8')
     contour = outer_mask - ndi.binary_erosion(outer_mask, structure=se, border_value=0)
-    print(np.where(contour==1))
     pixels_mask = np.array(np.where(contour == 1)[::-1]).T
     outer = polygonize_by_nearest_neighbor(pixels_mask)
 

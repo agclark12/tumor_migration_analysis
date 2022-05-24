@@ -421,8 +421,7 @@ def main():
 
     """
 
-    # stk_path = './sample_data/tumor_nuclei.tif'
-    stk_path = './sample_data_lab_meeting/monolayer_live.tif'
+    stk_path = './sample_data/tumor_nuclei_small/tumor_nuclei_small.tif'
     analyze_vectors(stk_path)
 
 if __name__=="__main__":

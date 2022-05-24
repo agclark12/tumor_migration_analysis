@@ -26,6 +26,7 @@ def analyze_frame(labels,px_size,plot_dir):
     """gets and plots finding the aspect ratio and shape factor and makes some plots
 
     TODO: extract size
+          output data
     """
 
     #calculate the principal axis, aspect ratio and shape factor for each region
@@ -33,6 +34,7 @@ def analyze_frame(labels,px_size,plot_dir):
     no_labels = np.max(labels)
 
     centroid_list = morpho.get_centroids(labels)
+    size_list = morpho.extract_cell_areas(labels,px_size=px_size)
     angle_list, ar_list = morpho.get_orientation_ar(labels)
     sf_list = morpho.get_sf(labels)
 
@@ -57,7 +59,7 @@ def analyze_frame(labels,px_size,plot_dir):
     ax.imshow(bin,cmap='gray_r')
     scale_factor = 0.25
     ax.quiver(centroid_list[:,0], centroid_list[:,1], ar_list, ar_list, units='xy', scale=scale_factor,
-              scale_units='x', width=2, headlength=0, headaxislength=0, angles=angle_list * 180. / np.pi, color='r', pivot='middle')
+              scale_units='x', width=2, headlength=0, headaxislength=0, angles=np.degrees(angle_list), color='r', pivot='middle')
     ax.plot(centroid_list[:,0], centroid_list[:,1],'go', ms=5)
     # for i in range(2,no_labels):
     #     ax.annotate("%i"%i,xy=centroid_list[i-1]+2,color='r',size=10)
@@ -118,8 +120,15 @@ def analyze_frame(labels,px_size,plot_dir):
     plt.savefig(os.path.join(plot_dir, 'shape_factor.pdf'))
     plt.close()
 
-    ########outputs the data#########
-    ########still need to get size data#######
+    #puts the data together and returns
+    label_list = range(1,no_labels+1)
+    centroid_x_list = centroid_list[:,0]
+    centroid_y_list = centroid_list[:,1]
+    data_to_write = list(zip(label_list, centroid_x_list, centroid_y_list,
+                             size_list, np.degrees(angle_list), ar_list, sf_list))
+    data_to_write.insert(0, ['cell_label', 'centroid_x_px', 'centroid_y_px',
+                             'area_um^2','angle_deg', 'aspect_ratio', 'shape_factor'])
+    return data_to_write
 
 def analyze_stk(img_path, px_size):
 
@@ -139,8 +148,9 @@ def analyze_stk(img_path, px_size):
         frame_dir = os.path.join(data_dir,"frame_%i"%(i+1))
         uf.make_dir(frame_dir)
 
-        #does the frame analysis
-        analyze_frame(stk[i],px_size,frame_dir)
+        #does the frame analysis and saves the data
+        data_to_write = analyze_frame(stk[i],px_size,frame_dir)
+        uf.write_csv(data_to_write, os.path.join(frame_dir, 'morphometric_data.csv'))
 
 def main():
     """Sets up the morphometric analysis
@@ -150,8 +160,8 @@ def main():
     """
 
     #sets some initial parameters
-    label_file_path = './sample_data_lab_meeting/monolayer_labels.tif'
-    px_size = 0.275 #um/px
+    label_file_path = './sample_data/tumor_nuclei_small/tumor_nuclei_small_voronoi/tumor_nuclei_small_voronoi_voronoi_labels.tif'
+    px_size = 0.91 #um/px
 
     analyze_stk(label_file_path, px_size)
 

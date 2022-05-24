@@ -108,10 +108,8 @@ def main():
     """
 
     #sets some initial parameters
-    # stk_path = './sample_data/tumor_nuclei.tif'
-    # px_size = 0.91 #um/px
-    stk_path = './sample_data_lab_meeting/monolayer_live.tif'
-    px_size = 0.275 #um/px
+    stk_path = './sample_data/tumor_nuclei_small/tumor_nuclei_small.tif'
+    px_size = 0.91 #um/px
     scale_factor = 0.004 #for scaling the PIV vectors on the plots
     scale_length = 0.1 #sets the length of the scale vector on the plots (in um/min)
 

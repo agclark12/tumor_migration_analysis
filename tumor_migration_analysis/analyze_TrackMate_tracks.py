@@ -175,6 +175,7 @@ def analyze_trackmate_file(img_file_path, track_file_path, time_int=1, px_size=1
     #plots the binned data and saves
     fig, ax = plt.subplots()
     plot_corr_vs_dist(ax,dist_means,corr_means,corr_stds,'b')
+    plt.tight_layout()
     plt.savefig(os.path.join(save_dir, basename + '_corr_vs_dist.pdf'))
 
     #writes params to file
@@ -213,10 +214,8 @@ def analyze_trackmate_file(img_file_path, track_file_path, time_int=1, px_size=1
     cm = plt.get_cmap('hot')
 
     # goes through each trajectory
-    print(len(traj_dict_list))
     for j, traj in enumerate(traj_dict_list):
 
-        print(j)
         #sets the colors for plotting
         n = len(traj['x'])
         colors = [cm(1. * i / (n - 1)) for i in range(n - 1)]
