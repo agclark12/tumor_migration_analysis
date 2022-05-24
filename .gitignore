@@ -1,0 +1,9 @@
+.DS_store
+.idea/
+__pycache__/
+*.pyc
+sample_data/cell_ids
+sample_data/nuclei
+sample_data/tumor_nuclei_stardist_Tracks
+sample_data/tumor_nuclei_piv_data
+venv/
