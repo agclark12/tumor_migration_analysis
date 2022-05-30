@@ -242,8 +242,8 @@ def main():
     """
 
     #sets some initial parameters
-    img_file_path = './sample_data/tumor_nuclei_small.tif'
-    track_file_path = './sample_data/tumor_nuclei_small_stardist_Tracks.xml'
+    img_file_path = './sample_data/tumor_nuclei_small/tumor_nuclei_small.tif'
+    track_file_path = './sample_data/tumor_nuclei_small/tumor_nuclei_small_stardist_Tracks.xml'
     time_int = 30 #min
     px_size = 0.91 #um/px
 

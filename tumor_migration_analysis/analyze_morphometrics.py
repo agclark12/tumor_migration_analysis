@@ -23,11 +23,7 @@ import morphometric_analysis as morpho
 
 def analyze_frame(labels,px_size,plot_dir):
 
-    """gets and plots finding the aspect ratio and shape factor and makes some plots
-
-    TODO: extract size
-          output data
-    """
+    """gets and plots finding the aspect ratio and shape factor and makes some plots"""
 
     #calculate the principal axis, aspect ratio and shape factor for each region
     print("Calculating morphometrics for all labels")
@@ -38,11 +34,16 @@ def analyze_frame(labels,px_size,plot_dir):
     angle_list, ar_list = morpho.get_orientation_ar(labels)
     sf_list = morpho.get_sf(labels)
 
+    #gets dimensions of the original image
+    width = labels.shape[-2]
+    height = labels.shape[-2]
+    ar = width/height
+
     # makes some plots
     print("Plotting")
 
     #makes a plot of the labeled image
-    fig,ax = plt.subplots(figsize=(6,6))
+    fig,ax = plt.subplots(figsize=(6,6*ar))
     np.random.seed(19680801)
     cmap = colors.ListedColormap(np.random.rand(256, 3))
     cmap.set_under('k')
@@ -55,7 +56,7 @@ def analyze_frame(labels,px_size,plot_dir):
 
     #makes a plot of the cells with principal axes and ar overlaid
     bin = (labels > 0).astype('uint8')
-    fig,ax = plt.subplots(figsize=(6,6))
+    fig,ax = plt.subplots(figsize=(6,6*ar))
     ax.imshow(bin,cmap='gray_r')
     scale_factor = 0.25
     ax.quiver(centroid_list[:,0], centroid_list[:,1], ar_list, ar_list, units='xy', scale=scale_factor,
@@ -78,7 +79,7 @@ def analyze_frame(labels,px_size,plot_dir):
         points = np.where(labels == i)
         ar_img[points] = ar_list[i-1] #the ar list is from zero, labels are from 1
 
-    fig,ax = plt.subplots(figsize=(6,6))
+    fig,ax = plt.subplots(figsize=(8,6))
     cmap = plt.get_cmap('plasma')
     cmap.set_under('k')
     v_min = 1
@@ -104,7 +105,7 @@ def analyze_frame(labels,px_size,plot_dir):
         points = np.where(labels == i)
         sf_img[points] = sf_list[i-1]  #the ar list is from zero, labels are from 1
 
-    fig,ax = plt.subplots(figsize=(6,6))
+    fig,ax = plt.subplots(figsize=(8,6))
     cmap = plt.get_cmap('plasma')
     cmap.set_under('k')
     v_min = 3.5
