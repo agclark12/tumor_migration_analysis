@@ -101,6 +101,8 @@ def plot_corr_dist_data(ax, delta_r_list, cvv_list, p1=None):
             ax.plot(x_, y_, 'b-', zorder=0, label=r"Exp. Fit, $\xi_{vv}$ = %i $\mu$m" % (np.round(corr_len)))
         except TypeError:
             print("Fit unsucessful. Plotting data only.")
+        except ValueError:
+            print("Problem with PIV vectors. Plotting data only.")
 
     #finishes the plot
     ax.set_xlabel(r"Distance, $\delta r$ ($\mu$m)")
