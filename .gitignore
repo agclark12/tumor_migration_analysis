@@ -13,3 +13,6 @@ sample_data/tumor_nuclei/tumor_nuclei_small_stardist_Tracks/
 sample_data/tumor_nuclei/tumor_nuclei_piv_data/
 sample_data/tumor_nuclei/tumor_nuclei_voronoi/
 venv/
+local/
+misc/
+old/
