@@ -65,7 +65,7 @@ def plot_vectors(stk_path,px_size=1,scale_factor=0.004,scale_length=0.1,vector_w
             rcParams['axes.linewidth'] = 0
             fig, ax = plt.subplots(figsize=(6,6*ar))
             # ax.patch.set_facecolor('black')
-            ax.imshow(stk[i],cmap='Greys_r',extent=(0,width,0,height))
+            ax.imshow(stk[i],cmap='Greys_r',extent=(0,width,height,0))
 
             #plots each frame
             print('Grabbing frame:', basename)
