@@ -10,7 +10,7 @@ All python scripts were written and tested in python 3.7.x
 It is recommended to download the [Anaconda Distribution](https://www.anaconda.com/products/individual) of python3 to use these scripts.
 The Anaconda distribution will contain most of the necessary packages you need.
 
-To download the additional required packages, in a terminal window, type ```pip install``` or ```conda install``` followed by the name of the package.
+To download the additional required packages, in a terminal window, type `pip install` or `conda install` followed by the name of the package.
 Additional packages not included in Anaconda python include:
 
 - shapely~=1.8.1
@@ -21,11 +21,11 @@ Alternatively, and what is probably a better solution, is to start a virtual env
 
 1. Clone or download this repository
 2. Using a terminal, navigate to the directory where this README is stored
-3. Create a virtual environment using ```python -m venv venv```
-4. Activate your virtual environment using ```source venv/bin/activate``` (for Windows users `vev\Scripts\activate`)
-5. Download the required packages using ```python -m pip install -r requirements.txt```
+3. Create a virtual environment using `python -m venv venv`
+4. Activate your virtual environment using `source venv/bin/activate` (for Windows users `vev\Scripts\activate`)
+5. Download the required packages using `python -m pip install -r requirements.txt`
 
-Once you have python and the necessary packages installed, you can run any of the included scripts using ```python name_of_script.py```
+Once you have python and the necessary packages installed, you can run any of the included scripts using python `name_of_script.py`
 or by setting up the package in your favorite IDE.
 (Be sure to configure the interpreter to use your virtual environment if you have set this up!)
 
