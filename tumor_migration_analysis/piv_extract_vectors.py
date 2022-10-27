@@ -151,7 +151,7 @@ def get_piv_vectors(frame_a,frame_b,dt,window_size=32,threshold=1.,scaling_facto
     # performs interpolation
     u_interp = deepcopy(u)
     v_interp = deepcopy(v)
-    u_interp, v_interp = openpiv.filters.replace_outliers(u_interp, v_interp, method='localmean', max_iter=10, kernel_size=2)
+    u_interp, v_interp = openpiv.filters.replace_outliers(u_interp, v_interp, method='distance', max_iter=10, kernel_size=2)
 
     #removes interpolated vectors that are not within the mask region
     u_interp_masked = deepcopy(u_interp)
