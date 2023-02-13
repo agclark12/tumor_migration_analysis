@@ -3,7 +3,7 @@
 This package contains several python scripts and ImageJ/FIJI macros
 that can aid in the analysis of collective migration patterns.
 
-All python scripts were written and tested in python 3.7.x
+All python scripts were written and tested in python 3.8
 
 ## Requirements
 
@@ -33,7 +33,7 @@ The ```.ijm``` files are macros for ImageJ/FIJI and can be run directly in the F
 
 For more information on how to incorporate these scripts into your analysis pipline for collective tumor migration, please see our accompanying article:
 
-Staneva and Clark (2022) Analysis of Collective Migration Patterns within Tumors. In: Methods in Molecular Biology - Cell Migration in Three Dimensions, C. Margadant, ed. (Springer Nature, London, UK), pp. XX-XX.
+Staneva and Clark (2022) Analysis of Collective Migration Patterns within Tumors. In: Methods in Molecular Biology 2608 - Cell Migration in Three Dimensions, C. Margadant, ed. (Springer Nature, London, UK), pp. 305-323.
 
 If you found these scripts to be useful, please feel free to cite our publication.
 

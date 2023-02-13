@@ -224,15 +224,18 @@ def get_corr_dist(x,y,u,v):
 
     #computes of the correlation matrix
     Norm_matrix = np.ones(shape=x.shape)
-    Norm = signal.correlate2d(Norm_matrix,Norm_matrix)
+    # Norm = signal.correlate2d(Norm_matrix,Norm_matrix)
+    Norm = signal.correlate(Norm_matrix, Norm_matrix, mode='full', method='fft')
 
     du = u-np.nanmean(u)*np.ones(shape=u.shape)
     dv = u-np.nanmean(v)*np.ones(shape=v.shape)
     du[np.isnan(du)] = 0
     dv[np.isnan(dv)] = 0
 
-    CorrU = signal.correlate2d(du,du)/Norm
-    CorrV = signal.correlate2d(dv,dv)/Norm
+    # CorrU = signal.correlate2d(du,du)/Norm
+    # CorrV = signal.correlate2d(dv,dv)/Norm
+    CorrU = signal.correlate(du, du, mode='full', method='fft') / Norm
+    CorrV = signal.correlate(dv, dv, mode='full', method='fft') / Norm
 
     #computes the radial function
     XX,YY = np.meshgrid(np.linspace(-xmax,xmax,CorrU.shape[1]),np.linspace(-ymax,ymax,CorrU.shape[0]))
