@@ -97,7 +97,7 @@ def plot_vectors(stk_path,px_size=1,scale_factor=0.004,scale_length=0.1,vector_w
             fig.subplots_adjust(bottom=0,left=0,top=1,right=1)
 
             #saves plot as png
-            plt.savefig(plot_dir + '/%s_vectors.png'%basename)
+            plt.savefig(plot_dir + '/%s_vectors.png'%basename, dpi=300)
             plt.close()
 
 def main():
